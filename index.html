@@ -40,7 +40,7 @@
   <div class="toast" id="toast"></div>
   <script>
     const SAMPLES={ja:`天　地　星　空　山　川
-ten tsuchi hoshi sora yama kawa
+ame tsuchi hoshi sora yama kawa
 峰　谷　雲　霧　室　苔
 mine tani kumo kiri muro koke
 
@@ -50,21 +50,21 @@ sasage sasage
 人　犬　上　末　硫黄　猿
 hito inu ue sue yuwa saru
 生せよ　榎の枝を　馴れ居て
-ose yo e no e o nare ite
+ofuseyo e no e o narewite
 
 願わくば　一切成就の　祓　奉る
-negawakuba issai jouju no harae tatematsuru
+negawakuba issai jōju no harae tatematsuru
 恐み　恐みも　白す
-kashikomi kashikomi mo mayosu`,zh:`晚风轻敲窗边
+kashikomi kashikomi mo mōsu`,zh:`晚风轻敲窗边
 想起你的声音
 
 月光落在旧街`};
     const SMALL=new Set(Array.from('ゃゅょぁぃぅぇぉゎャュョァィゥェォヮ'));
-    const UNITS=`kya kyu kyo gya gyu gyo sha shu sho sya syu syo jya jyu jyo cha chu cho tya tyu tyo nya nyu nyo hya hyu hyo bya byu byo pya pyu pyo mya myu myo rya ryu ryo shi chi tsu ja ju jo fu ka ki ku ke ko ga gi gu ge go sa su se so za ji zu ze zo ta te to da de do na ni nu ne no ha hi he ho ba bi bu be bo pa pi pu pe po ma mi mu me mo ya yu yo ra ri ru re ro wa wo a i u e o n`.split(' ');
+    const UNITS=`kya kyu kyo gya gyu gyo sha shu sho sya syu syo jya jyu jyo cha chu cho tya tyu tyo nya nyu nyo hya hyu hyo bya byu byo pya pyu pyo mya myu myo rya ryu ryo shi chi tsu ja ju jo fu ka ki ku ke ko ga gi gu ge go sa su se so za ji zu ze zo ta te to da de do na ni nu ne no ha hi he ho ba bi bu be bo pa pi pu pe po ma mi mu me mo ya yu yo ra ri ru re ro wa wi we wo a i u e o n`.split(' ');
     const $=s=>document.querySelector(s);let language='ja',groups=[],answers={},menuState=null;
     function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-    function splitRomajiWord(raw){let word=raw.toLowerCase().replace(/[^a-z'-]/g,'').replace(/[’-]/g,''),out=[];while(word){if(word.length>1&&word[0]===word[1]&&/[bcdfghjkmprstz]/.test(word[0])){out.push(word[0]);word=word.slice(1);continue}const unit=UNITS.find(x=>word.startsWith(x));if(!unit)return null;out.push(unit);word=word.slice(unit.length)}return out.length?out:null}
-    function romajiTokens(line){const words=line.trim().split(/\s+/).map(x=>x.replace(/^[^A-Za-z]+|[^A-Za-z'-]+$/g,'')).filter(Boolean),parts=words.map(splitRomajiWord);return words.length&&!parts.some(x=>!x)?words:null}
+    function splitRomajiWord(raw){let word=raw.toLowerCase().replace(/ā/g,'aa').replace(/ī/g,'ii').replace(/ū/g,'uu').replace(/ē/g,'ee').replace(/ō/g,'ou').replace(/[^a-z'-]/g,'').replace(/[’-]/g,''),out=[];while(word){if(word.length>1&&word[0]===word[1]&&/[bcdfghjkmprstz]/.test(word[0])){out.push(word[0]);word=word.slice(1);continue}const unit=UNITS.find(x=>word.startsWith(x));if(!unit)return null;out.push(unit);word=word.slice(unit.length)}return out.length?out:null}
+    function romajiTokens(line){const latin='A-Za-zĀĪŪĒŌāīūēō',words=line.trim().split(/\s+/).map(x=>x.replace(new RegExp(`^[^${latin}]+|[^${latin}'-]+$`,'g'),'')).filter(Boolean),parts=words.map(splitRomajiWord);return words.length&&!parts.some(x=>!x)?words:null}
     function romajiMora(line){const words=romajiTokens(line)||[],mora=[],wordEnds=[];for(const word of words){const pieces=splitRomajiWord(word)||[];pieces.forEach((piece,i)=>{mora.push(piece);wordEnds.push(i===pieces.length-1)})}return{words,mora,wordEnds}}
     function kanaTokens(line){const out=[];for(const ch of Array.from(line)){if(!/[\u3040-\u30ffー]/u.test(ch))continue;if(SMALL.has(ch)&&out.length)out[out.length-1]+=ch;else out.push(ch)}return out}
     function hanTokens(line){return Array.from(line).filter(ch=>/\p{Script=Han}/u.test(ch))}
