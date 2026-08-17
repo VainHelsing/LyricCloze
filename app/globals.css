@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root { --paper: #f4f1eb; --ink: #171715; --muted: #76736d; --line: #cbc7bf; --red: #b82821; --white: #fffdf8; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Songti SC", "Noto Serif CJK SC", "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif; }
+button, textarea, input { font: inherit; }
+button { color: inherit; }
+button:focus-visible, textarea:focus-visible, input:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.topbar { height: 76px; padding: 0 clamp(24px, 6vw, 96px); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { color: var(--ink); text-decoration: none; font-size: 21px; letter-spacing: .18em; font-weight: 700; }
+.brand span { color: var(--red); }
+.topnote { font-size: 12px; color: var(--muted); letter-spacing: .08em; display: flex; align-items: center; gap: 8px; }
+.topnote i { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+.hero { min-height: 720px; padding: 88px clamp(24px, 8vw, 132px) 106px; border-bottom: 1px solid var(--line); position: relative; }
+.hero::after { content: "あ"; position: absolute; right: 6vw; top: 54px; font-size: clamp(130px, 20vw, 310px); color: transparent; -webkit-text-stroke: 1px #d8d4cc; pointer-events: none; line-height: 1; }
+.eyebrow { color: var(--red); font-family: Georgia, serif; font-size: 11px; letter-spacing: .2em; font-weight: 700; }
+h1 { margin: 28px 0 22px; font-size: clamp(54px, 8.2vw, 116px); line-height: .92; letter-spacing: -.065em; font-weight: 500; position: relative; z-index: 1; }
+h1 em { color: var(--red); font-style: normal; }
+.intro { max-width: 610px; color: #585650; font-size: 16px; line-height: 1.9; margin: 0 0 42px; }
+.composer { max-width: 980px; background: var(--white); border: 1px solid #a9a59e; box-shadow: 10px 10px 0 rgba(23,23,21,.08); position: relative; z-index: 2; }
+.composer-head, .composer-foot { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; }
+.composer-head { border-bottom: 1px solid var(--line); }
+.composer-head label { font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+.text-button, .sheet-title button { border: 0; background: none; padding: 4px; cursor: pointer; font-size: 12px; color: var(--red); text-decoration: underline; text-underline-offset: 4px; }
+textarea { width: 100%; min-height: 210px; resize: vertical; border: 0; background: transparent; color: var(--ink); padding: 22px; font-size: 17px; line-height: 1.75; }
+textarea:focus { outline-offset: -3px; }
+.composer-foot { border-top: 1px solid var(--line); gap: 22px; }
+.composer-foot p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.primary { flex: none; border: 0; padding: 13px 18px; background: var(--ink); color: white; cursor: pointer; letter-spacing: .06em; font-size: 13px; transition: background .2s, transform .2s; }
+.primary:hover { background: var(--red); transform: translateY(-1px); }
+.primary span { color: #ed625b; margin-left: 28px; }
+.practice { padding: 94px clamp(24px, 8vw, 132px) 120px; }
+.section-head { max-width: 1180px; margin: 0 auto 38px; display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+h2 { margin: 10px 0 0; font-size: clamp(36px, 5vw, 62px); font-weight: 500; letter-spacing: -.04em; }
+.outline { border: 1px solid var(--ink); background: transparent; padding: 11px 16px; font-size: 12px; cursor: pointer; }
+.outline:hover:not(:disabled) { background: var(--ink); color: white; }
+.outline:disabled { opacity: .35; cursor: default; }
+.notice, .empty { max-width: 1180px; margin: 0 auto 22px; padding: 15px 18px; border-left: 3px solid var(--red); background: #ebe7df; color: #625f59; font-size: 13px; }
+.notice b { color: var(--red); }
+.sheets { max-width: 1180px; margin: 0 auto; display: grid; gap: 22px; }
+.sheet { border: 1px solid #aaa69f; background: var(--white); }
+.sheet-title { min-height: 52px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 0 18px; }
+.sheet-title > span { font: italic 20px Georgia, serif; color: var(--red); }
+.lyric-row { display: grid; grid-template-columns: 94px 1fr; min-width: 0; }
+.lyric-row + .lyric-row { border-top: 1px solid var(--line); }
+.row-meta { padding: 25px 14px 20px 18px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 5px; }
+.row-meta span { font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.row-meta small { color: var(--muted); font-size: 11px; }
+.token-grid { padding: 20px; display: flex; flex-wrap: wrap; gap: 14px 8px; align-items: start; }
+.token-pair { width: 39px; display: grid; gap: 8px; text-align: center; }
+.token { min-height: 25px; font-size: 17px; white-space: nowrap; display: flex; align-items: center; justify-content: center; }
+.token-pair input { width: 39px; height: 39px; padding: 0; border: 1px solid #8f8b84; background: #f8f6f1; border-radius: 0; text-align: center; font-size: 17px; }
+.token-pair input:focus { border-color: var(--red); background: white; outline-offset: 1px; }
+footer { border-top: 1px solid var(--line); padding: 30px clamp(24px, 6vw, 96px); display: flex; justify-content: space-between; gap: 24px; color: var(--muted); font-size: 11px; letter-spacing: .08em; }
+footer span { color: var(--ink); font-weight: 700; }
+footer p { margin: 0; }
+@media (max-width: 640px) {
+  .topnote { display: none; }
+  .hero { padding-top: 58px; min-height: auto; }
+  .hero::after { top: 82px; right: 3vw; }
+  h1 { letter-spacing: -.08em; }
+  .composer-foot { align-items: stretch; flex-direction: column; }
+  .primary { width: 100%; display: flex; justify-content: space-between; }
+  .practice { padding-top: 70px; }
+  .section-head { align-items: stretch; flex-direction: column; }
+  .outline { width: 100%; }
+  .lyric-row { grid-template-columns: 1fr; }
+  .row-meta { border-right: 0; border-bottom: 1px solid var(--line); padding: 11px 14px; flex-direction: row; justify-content: space-between; }
+  .token-grid { padding: 16px 14px 20px; gap: 14px 7px; }
+  footer { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
