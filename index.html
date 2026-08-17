@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="中文与日语歌词词格生成器">
-  <title>Lyric Grid</title>
+  <title>词格 · Lyric Cloze</title>
   <style>
     :root{--paper:#e9ecef;--ink:#17191b;--muted:#697078;--line:#bcc2c8;--red:#b82420;--white:#f7f8f9;--soft:#dfe3e7}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC","Yu Mincho","Hiragino Mincho ProN",Georgia,serif}button,textarea,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px}
@@ -17,10 +17,10 @@
   </style>
 </head>
 <body>
-  <header><div class="brand"><b>Lyric</b> Grid</div><div class="local"><i></i> 本地处理 · 内容不会上传</div></header>
+  <header><div class="brand"><b>Lyric</b> Cloze</div><div class="local"><i></i> 本地处理 · 内容不会上传</div></header>
   <main>
     <section class="hero">
-      <h1><b>Lyric</b> Grid</h1>
+      <h1><b>词</b>格</h1>
       <p class="intro">选择歌曲的原始语言，再粘贴歌词。中文按字生成；日语以读音音节为准。仅有日本汉字时无法可靠判断读音，词格会暂时按字估算；添加假名或罗马音能提高准确率，也可在生成后用“调整格子”校正。</p>
       <p class="priority-note"><b>生成格子：</b>罗马音 → 假名 → 日文原文。罗马音存在时优先按罗马音音节数生成；没有罗马音时按假名；两者都没有时才按原文估算。<br><b>复制 Markdown：</b>原文 → 假名或对应文字 → 罗马音 → 填空。</p>
       <div class="language" role="group" aria-label="歌曲语言"><button class="active" data-lang="ja">日语</button><button data-lang="zh">中文</button></div>
@@ -36,7 +36,7 @@
       <div id="status"></div><div class="sheets" id="sheets"></div>
     </section>
   </main>
-  <footer><b>Lyric Grid</b><p>备注保存在当前浏览器。双击备注中的一行可复制；选中文字后右键可填入该分句。</p></footer>
+  <footer><b>词格</b><p>备注保存在当前浏览器。双击备注中的一行可复制；选中文字后右键可填入该分句。</p></footer>
   <div class="menu" id="selection-menu"><button id="fill-selection">填入当前分句</button></div>
   <div class="toast" id="toast"></div>
   <script>
